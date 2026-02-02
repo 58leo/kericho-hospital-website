@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kericho County Referral Hospital</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: "Segoe UI", Arial, sans-serif;
+            background-color: #f1f5f9;
+            color: #333;
+        }
+
+        /* WATERMARK */
+        body::before {
+            content: "";
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: url('images/logo.png') no-repeat center center;
+            background-size: 360px;
+            opacity: 0.25;
+            width: 300px;
+            height: 300px;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        body > * {
+            position: relative;
+            z-index: 1;
+        }
+
+        /* HEADER */
+        header {
+            background: linear-gradient(90deg, #0a7c6f, #0d9488);
+            color: white;
+            padding: 25px 15px;
+            text-align: center;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 28px;
+        }
+
+        header p {
+            margin: 5px 0 15px 0;
+        }
+
+        nav a {
+            display: inline-block;
+            background-color: #14b8a6;
+            color: white;
+            padding: 12px 25px;
+            margin: 8px;
+            border-radius: 10px;
+            text-decoration: none;
+            font-weight: 600;
+            box-shadow: 0 6px 15px rgba(0,0,0,0.2);
+            transition: all 0.3s ease;
+        }
+
+        nav a:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+            background-color: #0d9488;
+        }
+
+        /* HERO */
+        .hero {
+            padding: 40px 20px;
+            text-align: center;
+        }
+
+        .hero p {
+            max-width: 700px;
+            margin: auto;
+            line-height: 1.6;
+        }
+
+        /* SERVICE CARDS */
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 20px;
+            padding: 20px;
+        }
+
+        .card {
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+            text-align: center;
+            font-size: 16px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 12px 25px rgba(0,0,0,0.2);
+            background-color: #e0f7f5;
+        }
+
+        /* MODAL */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+            justify-content: center;
+            align-items: center;
+            z-index: 5;
+        }
+
+        .modal-content {
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            max-width: 400px;
+            text-align: center;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .modal-content h3 {
+            margin-top: 0;
+            color: #0d9488;
+        }
+
+        .close-btn {
+            margin-top: 20px;
+            background: #0d9488;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+
+        .close-btn:hover {
+            background: #0a7c6f;
+        }
+
+        @keyframes fadeIn {
+            from { transform: scale(0.9); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+
+        footer {
+            background: #0f172a;
+            color: #cbd5e1;
+            text-align: center;
+            padding: 15px;
+            font-size: 14px;
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <h1>Kericho County Referral Hospital</h1>
+    <p>Trusted • Accessible • Quality Healthcare</p>
+
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="services.html">Services</a>
+        <a href="contact.html">Contact</a>
+    </nav>
+</header>
+
+<section class="hero">
+    <h2>Welcome to Our Hospital</h2>
+    <p>
+        We provide professional, affordable, and patient-centered healthcare
+        services to the community.
+    </p>
+</section>
+
+<section class="cards">
+    <div class="card" onclick="openModal('Outpatient Care','Consultations, checkups, and minor treatments.')">🩺 Outpatient Care</div>
+    <div class="card" onclick="openModal('Inpatient Services','24/7 admission with professional nursing care.')">🏥 Inpatient Services</div>
+    <div class="card" onclick="openModal('Emergency Services','Immediate care for critical and life-threatening cases.')">🚑 Emergency Services</div>
+    <div class="card" onclick="openModal('Laboratory','Advanced diagnostic and laboratory testing services.')">🧪 Laboratory</div>
+    <div class="card" onclick="openModal('Pharmacy','Safe dispensing of prescription medications.')">💊 Pharmacy</div>
+    <div class="card" onclick="openModal('Maternity Care','Antenatal, delivery, and postnatal services.')">🤱 Maternity Care</div>
+</section>
+
+<footer>
+    &copy; 2026 Kericho County Referral Hospital
+</footer>
+
+<!-- MODAL -->
+<div class="modal" id="serviceModal">
+    <div class="modal-content">
+        <h3 id="modalTitle"></h3>
+        <p id="modalText"></p>
+        <button class="close-btn" onclick="closeModal()">Close</button>
+    </div>
+</div>
+
+<script>
+    function openModal(title, text) {
+        document.getElementById("modalTitle").innerText = title;
+        document.getElementById("modalText").innerText = text;
+        document.getElementById("serviceModal").style.display = "flex";
+    }
+
+    function closeModal() {
+        document.getElementById("serviceModal").style.display = "none";
+    }
+</script>
+
+</body>
+</html>

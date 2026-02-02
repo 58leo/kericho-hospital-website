@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Outpatient Care - KCRH</title>
+
+    <style>
+        * { box-sizing: border-box; }
+
+        body {
+            margin: 0;
+            font-family: "Segoe UI", Arial, sans-serif;
+            background-color: #f1f5f9;
+        }
+
+        body::before {
+            content: "";
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: url('images/logo.png') no-repeat center;
+            background-size: 300px;
+            opacity: 0.2;
+            width: 300px;
+            height: 300px;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        body > * {
+            position: relative;
+            z-index: 1;
+        }
+
+        header {
+            background: linear-gradient(90deg, #0a7c6f, #0d9488);
+            color: white;
+            padding: 25px;
+            text-align: center;
+        }
+
+        nav a {
+            display: inline-block;
+            background: #14b8a6;
+            color: white;
+            padding: 10px 20px;
+            margin: 6px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        nav a:hover {
+            background: #0d9488;
+        }
+
+        section {
+            max-width: 800px;
+            margin: 40px auto;
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+
+        footer {
+            background: #0f172a;
+            color: #cbd5e1;
+            text-align: center;
+            padding: 15px;
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <h1>🩺 Outpatient Care</h1>
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="services.html">Services</a>
+        <a href="contact.html">Contact</a>
+    </nav>
+</header>
+
+<section>
+    <h2>Outpatient Services</h2>
+    <p>
+        Our outpatient department provides consultations, diagnosis,
+        treatment, and follow-up care without hospital admission.
+    </p>
+
+    <p>
+        <strong>Available Services:</strong><br>
+        • Medical consultations<br>
+        • Minor procedures<br>
+        • Follow-up clinics<br>
+        • Referrals to specialists
+    </p>
+</section>
+
+<footer>
+    &copy; 2026 Kericho County Referral Hospital
+</footer>
+
+</body>
+</html>
